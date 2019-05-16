@@ -6,12 +6,15 @@ class InitManager {
         InitManager.app = app
         InitManager.initLoadRouters()
         InitManager.loadConfig()
+        InitManager.loadHttpException()
     }
+
     static loadConfig() {
         const configPath = `${process.cwd()}/config/config.js`
         const config = require(configPath)
         global.config = config
     }
+
     static initLoadRouters() {
         // process.cwd()项目根目录
         const apiDirectory = `${process.cwd()}/app/api`
@@ -22,6 +25,11 @@ class InitManager {
                 }
             }  
         })
+    }
+
+    static loadHttpException() {
+        const errs = require('./http-exception')
+        global.errs = errs
     }
 }
 
