@@ -8,11 +8,11 @@ class User extends Model {
         const user = await User.findOne({
             where: { email }
         })
-        if(!user) {
+        if (!user) {
             throw new global.errs.AuthFailed('账户不存在')
-        } 
+        }
         const correct = bcrypt.compareSync(plainPassword, user.password)
-        if(!correct) {
+        if (!correct) {
             throw new global.errs.AuthFailed('密码不正确')
         }
         return user
